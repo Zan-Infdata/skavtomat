@@ -50,8 +50,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", hbsRouter);
 
-
+const port = process.env.PORT || 3000;
 // Starting the server
-app.listen(3001, () => {
-  console.log('listening on port 3001');
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });
