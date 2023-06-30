@@ -1,0 +1,54 @@
+    <!-- Header-->  
+   <header class='bg-dark py-5'>  
+       <div class='container px-4 px-lg-5 my-1'>  
+           <div class='text-center text-white'>  
+               <h1 id="vod" class='display-4 fw-bolder'> {{title}} </h1>  
+               <p class='lead fw-normal text-white-50 mb-0'>Bilanca voda</p>  
+           </div>  
+       </div>  
+   </header>
+
+   <section class='py-5'>  
+
+        <div class="container px-4 px-lg-5 mt-5" id="container">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="row">
+                
+
+                <div class="col-xs-4 bg-dark">
+                    <div class="m-1 p-3 text-center bg-white">
+
+                        <div class="row">
+                            <div class="col pr-0"><h2 id="stanje">X</h2></div>
+                            <div class="col"><img role="img" src="/coin.svg" width="32" height="32"></div>  
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center pt-5" id="row">
+
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <input id="x" type="number" class="form-control" placeholder="0">
+                        </div>
+                        <div class="col-3">
+                            <button id="dodaj" type="button" class="btn btn-success"><h2>+ </h2>Dodaj</button>
+                        </div>
+                        <div class="col-3">
+                            <button id="vzami" type="button" class="btn btn-danger"><h2>- </h2>Vzami</button>
+                        </div>
+                        
+                    </div>
+                </form>
+
+            </div>
+
+        </div>  
+
+
+    </section>  
+
+
+   <script src="/vod.js"></script>
