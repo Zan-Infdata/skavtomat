@@ -1,4 +1,5 @@
 var stanje =require("../../public/stanje")
+const { MdVod } = require("../models/db");
 
 const main = (req, res) => {
     res.render("index", { title: "Pregled" });
@@ -32,14 +33,41 @@ const gazelce = (req, res) => {
     res.render("vod", { title: "Gazelce" });
 };
 
-const getStanje = (req, res) => {
+async function getStanje(req, res){
+
+    // no cache query the db
+    if (stanje.stanja["cached"] == 0){
+        let raw_response = await MdVod.getAll()
+        
+        for(i in raw_response.DATA){
+            let vod = raw_response.DATA[i];
+
+            stanje.stanja[vod[MdVod.name]] = vod[MdVod.credit];
+        }
+        stanje.stanja["cached"] = 1;
+    }
+    
     res.status(200).json(stanje.stanja);
+
+    
 };
 
-const setStanje = (req, res) => {
+async function setStanje(req, res){
+
+    if(stanje.stanja["cached"] == 0){
+        await fetch('/getStanje')
+            .then(function(response) {
+                return response.json();
+            })
+    }
 
     if(req.body["dodatek"] != null) {
         stanje.stanja[req.body.vod] += req.body["dodatek"];
+
+        // update the DB
+        MdVod.setVodByName(req.body.vod, stanje.stanja[req.body.vod]);
+
+
         res.status(200).json(stanje.stanja);
     }
     else {

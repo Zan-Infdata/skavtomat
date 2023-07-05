@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const hbsRouter = require("./hbs/routes/hbs");
+require('dotenv').config();
 
 // define global root directory
 var path = require('path');
